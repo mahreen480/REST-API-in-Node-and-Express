@@ -36,7 +36,7 @@ app1.get("/users", (req, res) => {
 
 // })
 
-app.post("/api/users",(req,res)=>{
+app1.post("/api/users",(req,res)=>{
     //TODO: CREATE new user
     return res.json({status :"Pending"})
 })
