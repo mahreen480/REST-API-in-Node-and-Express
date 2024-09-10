@@ -59,7 +59,10 @@ app1.route("/api/users/:id").get((req, res) => {
     //TODO: EDIT the user with id
 }).delete((req, res) => {
     //TODO: Delete the user with id
-})
+}).post((req,res)=>{
+        //TODO: CREATE new user
+        return res.json({status :"Pending"})
+    })
 
 
 
