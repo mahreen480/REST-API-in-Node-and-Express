@@ -36,10 +36,10 @@ app1.get("/users", (req, res) => {
 
 // })
 
-// app.post("/api/users",(req,res)=>{
-//     //TODO: CREATE new user
-//     return res.json({status :"Pending"})
-// })
+app.post("/api/users",(req,res)=>{
+    //TODO: CREATE new user
+    return res.json({status :"Pending"})
+})
 
 // app.patch("/api/users/:id",(req,res)=>{
 //     //TODO: EDIT the user with id
@@ -59,10 +59,7 @@ app1.route("/api/users/:id").get((req, res) => {
     //TODO: EDIT the user with id
 }).delete((req, res) => {
     //TODO: Delete the user with id
-}).post((req,res)=>{
-        //TODO: CREATE new user
-        return res.json({status :"Pending"})
-    })
+})
 
 
 
