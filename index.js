@@ -6,9 +6,12 @@ const app1 = express()
 const PORT = 8000;
 
 
+//For POST METHOD in POSTMAN
+//MiddleWare - Plugin
+app1.use(express.urlencoded({ extended: false }))
+
+
 //Route
-
-
 //This is json format in mobile app
 app1.get("/api/users", (req, res) => {
     return res.json(users)
@@ -36,9 +39,13 @@ app1.get("/users", (req, res) => {
 
 // })
 
-app1.post("/api/users",(req,res)=>{
+app1.post("/api/users", (req, res) => {
     //TODO: CREATE new user
-    return res.json({status :"Pending"})
+
+    const body = req.body;
+    console.log(body);
+
+    return res.json({ status: "Pending" })
 })
 
 // app.patch("/api/users/:id",(req,res)=>{
