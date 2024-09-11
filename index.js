@@ -1,5 +1,6 @@
 const express = require("express");
 const users = require("./MOCK_DATA.json")
+const fs = require("fs");
 
 
 const app1 = express()
@@ -43,9 +44,11 @@ app1.post("/api/users", (req, res) => {
     //TODO: CREATE new user
 
     const body = req.body;
-    console.log(body);
+    users.push({ ...body,id: users.length + 1 });
+    fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, res) => {
+        return res.json({ status: "Success",id: users.length  })
+    })
 
-    return res.json({ status: "Pending" })
 })
 
 // app.patch("/api/users/:id",(req,res)=>{
