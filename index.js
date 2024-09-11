@@ -12,9 +12,25 @@ const PORT = 8000;
 app1.use(express.urlencoded({ extended: false }))
 
 
+
+app1.use((req,res,next)=>{
+    console.log("Middleware 1");
+    // res.json({mgs:"hello middleware"})
+    req.myUser= "MahreenFarooq";
+    next();
+})
+
+app1.use((req,res,next)=>{
+    console.log("Middleware 2",req.myUser);
+    // res.json({mgs:"hello middleware"})
+    return res.end("end of middleware")
+})
+
+
 //Route
 //This is json format in mobile app
 app1.get("/api/users", (req, res) => {
+    console.log("I am in get route",req.myUser)
     return res.json(users)
 })
 
@@ -53,7 +69,7 @@ app1.post("/api/users", (req, res) => {
 
 // app.patch("/api/users/:id",(req,res)=>{
 //     //TODO: EDIT the user with id
-// })
+// })   
 
 // app.delete("/api/users/:id",(req,res)=>{
 //     //TODO: Delete the user with id
@@ -63,10 +79,12 @@ app1.post("/api/users", (req, res) => {
 app1.route("/api/users/:id").get((req, res) => {
     const id = Number(req.params.id);
     const user = users.find((user) => user.id === id);
+    
     return res.json(user);
 
 }).patch((req, res) => {
-    //TODO: EDIT the user with id
+
+ 
 }).delete((req, res) => {
     //TODO: Delete the user with id
 })
