@@ -13,24 +13,25 @@ app1.use(express.urlencoded({ extended: false }))
 
 
 
-app1.use((req,res,next)=>{
+app1.use((req, res, next) => {
     console.log("Middleware 1");
     // res.json({mgs:"hello middleware"})
-    req.myUser= "MahreenFarooq";
+    req.myUser = "MahreenFarooq";
     next();
 })
 
-app1.use((req,res,next)=>{
-    console.log("Middleware 2",req.myUser);
+app1.use((req, res, next) => {
+    console.log("Middleware 2", req.myUser);
     // res.json({mgs:"hello middleware"})
-    return res.end("end of middleware")
+    next();
 })
 
 
 //Route
 //This is json format in mobile app
 app1.get("/api/users", (req, res) => {
-    console.log("I am in get route",req.myUser)
+    console.log("I am in get route")
+    console.log(req.myUser)
     return res.json(users)
 })
 
@@ -60,9 +61,9 @@ app1.post("/api/users", (req, res) => {
     //TODO: CREATE new user
 
     const body = req.body;
-    users.push({ ...body,id: users.length + 1 });
+    users.push({ ...body, id: users.length + 1 });
     fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, res) => {
-        return res.json({ status: "Success",id: users.length  })
+        return res.json({ status: "Success", id: users.length })
     })
 
 })
@@ -79,12 +80,12 @@ app1.post("/api/users", (req, res) => {
 app1.route("/api/users/:id").get((req, res) => {
     const id = Number(req.params.id);
     const user = users.find((user) => user.id === id);
-    
+
     return res.json(user);
 
 }).patch((req, res) => {
 
- 
+
 }).delete((req, res) => {
     //TODO: Delete the user with id
 })
