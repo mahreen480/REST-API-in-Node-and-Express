@@ -21,11 +21,11 @@ app1.use((req, res, next) => {
 })
 
 app1.use((req, res, next) => {
-    // console.log("Middleware 2", req.myUser);
+    console.log("Middleware 2", req.myUser);
     // // res.json({mgs:"hello middleware"})
     // next();
 
-    fs.appendFile("./log.txt", `\n${Date.now()}:${req.ip}:${req.method}:${req.path}\n`,(err,res)=>{
+    fs.appendFile("log.txt", `\n${Date.now()}:${req.ip}:${req.method}:${req.path}\n`,(err,res)=>{
         next();
     })
 

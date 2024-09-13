@@ -20,3 +20,13 @@
 1726204294567:::1:POST:/api/users
 
 1726206859646:::1:POST:/api/users
+
+1726207350578:::1:GET:/api/users
+
+1726207376514:::1:POST:/api/users
+
+1726207543832:::1:POST:/api/users
+
+1726207687552:::1:GET:/api/users
+
+1726207691643:::1:POST:/api/users
