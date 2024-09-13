@@ -35,8 +35,15 @@ app1.use((req, res, next) => {
 //Route
 //This is json format in mobile app
 app1.get("/api/users", (req, res) => {
-    console.log("I am in get route")
-    console.log(req.myUser)
+
+    // Middleware 
+    // console.log("I am in get route")
+    // console.log(req.myUser)
+
+    //HTTP headers
+    // console.log(req.headers)
+    // res.setHeader("X-myName","Mahreen")
+
     return res.json(users)
 })
 
@@ -64,14 +71,15 @@ app1.get("/users", (req, res) => {
 
 app1.post("/api/users", (req, res) => {
     //TODO: CREATE new user
-
+    // id: users.length + 1 
     const body = req.body;
-    users.push({ ...body, id: users.length + 1 });
-    fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, res) => {
+    users.push({ ...body, });
+    // fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, res) => {
         return res.json({ status: "Success", id: users.length })
-    })
+    }
+)
 
-})
+// })
 
 // app.patch("/api/users/:id",(req,res)=>{
 //     //TODO: EDIT the user with id
