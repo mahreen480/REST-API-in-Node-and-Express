@@ -74,12 +74,12 @@ app1.post("/api/users", (req, res) => {
     // id: users.length + 1 
     const body = req.body;
     users.push({ ...body, });
-    // fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, res) => {
-        return res.json({ status: "Success", id: users.length })
+    fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, res) => {
+        return res.status(201).json({ status: "Success", id: users.length })
     }
 )
 
-// })
+})
 
 // app.patch("/api/users/:id",(req,res)=>{
 //     //TODO: EDIT the user with id
