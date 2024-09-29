@@ -31,34 +31,16 @@ const router = express.Router();
 
 //Get users by id dynamically
 
-router.get("/:id", (req, res) => {
+const {HandelgetUserById , HandelpatchUserById, HandedeleteUserById, HandepostUserById} = require("../controllers/user")
 
-    const id = Number(req.params.id);
-    const user = users.find((user) => user.id === id);
-    return res.json(user);
+router
+    .route("/:id")
+    .get(HandelgetUserById)
+    .patch(HandelpatchUserById)
+    .delete(HandedeleteUserById)
 
-})
 
-router.post("/", async(req, res) => {
-    //TODO: CREATE new user
-    const body = req.body;
-    if (!body || !body.first_name || !body.last_name || !body.email || !body.gender || !body.job_title) {
-        return res.status(400).json({ msg: "All Fields are required" })
-    }
-
-    const result = await UserModel.create({
-        first_name: body.first_name,
-        last_name: body.last_name,
-        email :  body.email,
-        gender:  body.gender,
-        job_title :  body.job_title
-    })
-
-    console.log("result ",result)
-
-    return res.status(201).json({msg: "successful creation"})
-
-})
+router.post("/", HandepostUserById)
 
 
 // app.patch("/api/users/:id",(req,res)=>{
@@ -69,23 +51,5 @@ router.post("/", async(req, res) => {
 //     //TODO: Delete the user with id
 // })
 
-
-router
-    .route("/:id")
-    .get((req, res) => {
-        const id = Number(req.params.id);
-        const user = users.find((user) => user.id === id);
-
-
-
-        return res.json(user);
-
-    })
-    .patch((req, res) => {
-
-
-    }).delete((req, res) => {
-        //TODO: Delete the user with id
-    })
 
     module.exports = router;

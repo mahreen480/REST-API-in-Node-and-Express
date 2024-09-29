@@ -6,7 +6,7 @@ const { strict } = require("assert");
 
 
 //import connection
-const { connectMongoDB } = require("./connection");
+const { connectMongoDB }= require('./connection');
 
 //import middlewares
 const { logReqRes } = require("./middleware")
