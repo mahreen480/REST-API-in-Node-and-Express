@@ -1,5 +1,16 @@
 const User = require("../models/user")
 
+async function handleGetUser(req, res) {
+    try {
+        const user = await User.find(); 
+        if (!user || user.length === 0) return res.status(404).json({ error: "No users found" });
+        return res.json(user);
+    } catch (error) {
+        return res.status(500).json({ error: "Server error" });
+    }
+}
+
+
 async function HandelgetUserById(req,res){
     const user = await User.findById(req.params.id);
     //ya upper waliline likh lo ya neechy wali
@@ -44,5 +55,6 @@ module.exports={
     HandelgetUserById,
     HandelpatchUserById,
      HandedeleteUserById,
-     HandepostUserById
+     HandepostUserById,
+     handleGetUser,
 }

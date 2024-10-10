@@ -19,7 +19,6 @@ const router = express.Router();
 
 
 //this is the html format in web app
-
 // router.get("/users", (req, res) => {
 //     const html = `
 //    <ul>
@@ -31,25 +30,23 @@ const router = express.Router();
 
 //Get users by id dynamically
 
-const {HandelgetUserById , HandelpatchUserById, HandedeleteUserById, HandepostUserById} = require("../controllers/user")
+const {
+    HandelgetUserById , 
+    HandelpatchUserById,
+    HandedeleteUserById,
+    HandepostUserById,
+    handleGetUser
+    } = require("../controllers/user")
+
+router
+    .route("/")
+    .get(handleGetUser)
+    .post(HandepostUserById);
 
 router
     .route("/:id")
     .get(HandelgetUserById)
     .patch(HandelpatchUserById)
-    .delete(HandedeleteUserById)
-
-
-router.post("/", HandepostUserById)
-
-
-// app.patch("/api/users/:id",(req,res)=>{
-//     //TODO: EDIT the user with id
-// })   
-
-// app.delete("/api/users/:id",(req,res)=>{
-//     //TODO: Delete the user with id
-// })
-
+    .delete(HandedeleteUserById);
 
     module.exports = router;
